@@ -7,28 +7,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.Node;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
 
 import java.io.File;
 
-public class LoginFrame extends Application {
+public class LoginFrameController{
     @FXML
-    Pane loginPane;
+    private Pane loginPane;
+    @FXML
+    private Button startButton;
 
-    public LoginFrame() {
-
+    public LoginFrameController() {
+        System.out.println("hi");
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("LoginFrame.fxml"));
-        primaryStage.setTitle("LoginFrame");
-        primaryStage.setScene(new Scene(root, 1000, 600));
-        primaryStage.show();
+    @FXML
+    private void StartButtonOnClicked() throws Exception {
+        Stage currentStage = (Stage) loginPane.getScene().getWindow();
+        FXMLLoader newLoader = new FXMLLoader( getClass().getResource( "GameFrameView.fxml" ) );
+        Parent newRoot = (Parent) newLoader.load();
+        GameFrameController gfc = newLoader.getController();
+        gfc.setProperty( currentStage, newRoot );
     }
 
     @FXML
     private void initialize() {
+        System.out.println("hi2");
         File imageFile = new File("image/background.jpg");
         Image image = new Image(imageFile.toURI().toString());
         // new BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
@@ -37,5 +43,11 @@ public class LoginFrame extends Application {
         BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
         loginPane.setBackground(background);
+    }
+
+    public void setProperty( Stage stageBuffer, Parent root) {
+        stageBuffer.setTitle("Only87-Login");
+        stageBuffer.setScene(new Scene(root, 1000, 600));
+        stageBuffer.show();
     }
 }

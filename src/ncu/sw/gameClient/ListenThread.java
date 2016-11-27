@@ -10,7 +10,7 @@ import java.util.Timer;
 
 public class ListenThread implements Runnable{
     Socket cli;
-    public  ListenThread( Socket cli){
+    public  ListenThread( Socket cli ){
         this.cli = cli;
     }
     public void run(){
