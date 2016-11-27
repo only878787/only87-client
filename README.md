@@ -1,1 +1,1 @@
-#only87-server
+#only87-client
