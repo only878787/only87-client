@@ -1,6 +1,8 @@
 package ncu.sw.RenderGameUtility;
 
 
+import ncu.sw.CmdGameUtility.GameObject;
+
 /**
  * Created by Vincent on 10/10/2016.
  */
@@ -9,18 +11,17 @@ public abstract class GameObjectR {
     private double positionY;
     private double height;
     private double width;
-    private int attribute; // 加了一個attribute
+    public GameObjectR () {
+        positionX = 0;
+        positionY = 0;
+        height = 0;
+        width = 0;
+    }
     public GameObjectR ( double x,double y,double h,double w) {
         positionX = x;
         positionY = y;
         height = h;
         width = w;
-    }
-    public void setAttribute(int a) {
-        this.attribute = a;
-    }
-    public int getAttribute() {
-        return this.attribute;
     }
     public void setPosition(double X,double Y) {
         this.positionX = X;
@@ -42,4 +43,6 @@ public abstract class GameObjectR {
     public double getWidth() {
         return  width;
     }
+    public abstract void draw();
+    public abstract void copyFromCmd( GameObject cmd);
 }
