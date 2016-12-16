@@ -20,7 +20,6 @@ public class LoginFrameController{
     private Button startButton;
 
     public LoginFrameController() {
-        System.out.println("hi");
     }
 
     @FXML
