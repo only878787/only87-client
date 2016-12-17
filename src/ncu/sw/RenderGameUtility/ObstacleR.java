@@ -1,5 +1,6 @@
 package ncu.sw.RenderGameUtility;
 
+import javafx.scene.canvas.GraphicsContext;
 import ncu.sw.CmdGameUtility.GameObject;
 import ncu.sw.CmdGameUtility.Obstacle;
 
@@ -13,7 +14,7 @@ public class ObstacleR extends GameObjectR {
     }
 
     @Override
-    public void draw () {
+    public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
     }
     @Override
     public void copyFromCmd(GameObject cmd){

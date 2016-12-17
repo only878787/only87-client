@@ -1,5 +1,6 @@
 package ncu.sw.RenderGameUtility;
 
+import javafx.scene.canvas.GraphicsContext;
 import ncu.sw.CmdGameUtility.Coin;
 import ncu.sw.CmdGameUtility.GameObject;
 
@@ -16,8 +17,10 @@ public class CoinR extends GameObjectR {
         point = p;
     }
     @Override
-    public void draw(){
-
+    public void draw(GraphicsContext ctx, Point ViewPortCenter ){
+        double x = getPosition ().x - ViewPortCenter.x;
+        double y = getPosition ().y - ViewPortCenter.y;
+        ctx.drawImage ( ImageUtility.coinImage , x-50, y-50);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

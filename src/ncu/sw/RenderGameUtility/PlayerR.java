@@ -1,5 +1,6 @@
 package ncu.sw.RenderGameUtility;
 
+import javafx.scene.canvas.GraphicsContext;
 import ncu.sw.CmdGameUtility.GameObject;
 import ncu.sw.CmdGameUtility.Player;
 
@@ -14,9 +15,14 @@ public class PlayerR extends GameObjectR {
         super(x,y,20,20);
         identity = id;
     }
+    public String getIdentity(){
+        return identity;
+    }
     @Override
-    public void draw(){
-
+    public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
+        double x = getPosition ().x - ViewPortCenter.x-100;
+        double y = getPosition ().y - ViewPortCenter.y-100;
+        ctx.drawImage ( ImageUtility.playerImage , x, y);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

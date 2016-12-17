@@ -1,5 +1,6 @@
 package ncu.sw.RenderGameUtility;
 
+import javafx.scene.canvas.GraphicsContext;
 import ncu.sw.CmdGameUtility.GameObject;
 import ncu.sw.CmdGameUtility.Item;
 
@@ -20,7 +21,7 @@ public class ItemR extends GameObjectR {
         efect = e;
     }
     @Override
-    public void draw(){
+    public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
 
     }
     @Override

@@ -5,13 +5,11 @@ import ncu.sw.RenderGameUtility.*;
 
 import java.util.ArrayList;
 
-/**
- * Created by Arson on 2016/12/16.
- */
 public class GameModel {
     private static GameModel instance= null;
     private ArrayList<GameObjectR> dynamicObjectList;
     private PlayerR mplayer = null;
+    private String identity;
     private GameModel(){
         dynamicObjectList = new ArrayList<>();
     }
@@ -25,13 +23,16 @@ public class GameModel {
     public ArrayList<GameObjectR> getDynamicObjectList(){
         return dynamicObjectList;
     }
-
     public void update(Cmd cmd){
+        mplayer = null;
         dynamicObjectList.clear ();
         for( Player player:cmd.getPlayerArrayList ()){
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
             dynamicObjectList.add ( playerR );
+            if(identity == playerR.getIdentity()){
+                mplayer = playerR;
+            }
         }
         for( Coin coin:cmd.getCoinArrayList ()){
             CoinR coinR = new CoinR (  );
@@ -48,5 +49,13 @@ public class GameModel {
             obstacleR.copyFromCmd ( obstacle );
             dynamicObjectList.add ( obstacleR );
         }
+    }
+    public void setMyID(String id){
+        identity = id;
+    }
+    public Point getPlayerXY(){
+        if(mplayer!= null)
+            return mplayer.getPosition();
+        return null;
     }
 }
