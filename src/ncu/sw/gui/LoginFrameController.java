@@ -20,7 +20,6 @@ public class LoginFrameController{
     private Button startButton;
 
     public LoginFrameController() {
-        System.out.println("hi");
     }
 
     @FXML
@@ -34,7 +33,6 @@ public class LoginFrameController{
 
     @FXML
     private void initialize() {
-        System.out.println("hi2");
         File imageFile = new File("image/background.jpg");
         Image image = new Image(imageFile.toURI().toString());
         // new BackgroundSize(width, height, widthAsPercentage, heightAsPercentage, contain, cover)
