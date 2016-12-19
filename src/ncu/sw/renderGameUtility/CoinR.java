@@ -1,8 +1,8 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.Coin;
-import ncu.sw.CmdGameUtility.GameObject;
+import ncu.sw.gameUtility.Coin;
+import ncu.sw.gameUtility.GameObject;
 
 public class CoinR extends GameObjectR {
     private int point;
