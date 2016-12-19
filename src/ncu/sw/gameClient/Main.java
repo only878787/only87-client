@@ -4,6 +4,7 @@ package ncu.sw.gameClient;
  */
 
 import ncu.sw.gui.GameApp;
+import ncu.sw.renderEngine.RenderThread;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

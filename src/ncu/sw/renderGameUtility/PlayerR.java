@@ -1,8 +1,8 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.GameObject;
-import ncu.sw.CmdGameUtility.Player;
+import ncu.sw.gameUtility.GameObject;
+import ncu.sw.gameUtility.Player;
 
 /**
  * Created by Arson on 2016/11/1.

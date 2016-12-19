@@ -1,6 +1,4 @@
-package ncu.sw.CmdGameUtility;
-
-import javafx.scene.image.Image;
+package ncu.sw.gameUtility;
 
 /**
  * Created by Arson on 2016/11/1.

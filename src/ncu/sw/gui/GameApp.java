@@ -2,21 +2,14 @@ package ncu.sw.gui;/**
  * Created by onlyfly34 on 2016/11/17.
  */
 
-import javafx.scene.Scene;
-import ncu.sw.gameClient.TCPClient;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import ncu.sw.TCPCM.TCPClient;
 
 public class GameApp extends Application {
-    private TCPClient tc;
-
-
     public GameApp(){
-        tc = new TCPClient( 9000 );
-        System.out.println( "TCP Socket has been initialized." );
     }
 
     @Override

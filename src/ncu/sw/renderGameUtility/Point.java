@@ -1,4 +1,4 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 /**
  * Created by chenpu on 2016/12/17.

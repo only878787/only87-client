@@ -5,30 +5,41 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+import ncu.sw.TCPCM.TCPClient;
+import ncu.sw.gameClient.GameModel;
+import ncu.sw.gameClient.UpdateThread;
+import ncu.sw.renderEngine.RenderThread;
 
 import java.io.File;
+import java.net.InetAddress;
 
 public class LoginFrameController{
-    @FXML
-    private Pane loginPane;
-    @FXML
-    private Button startButton;
+    //private static final int port = 9487;
+    private static final String addr = "10.10.10.153";
+    @FXML private Pane loginPane;
+    @FXML private Button startButton;
+    @FXML private TextField textField;
 
     public LoginFrameController() {
     }
 
     @FXML
     private void StartButtonOnClicked() throws Exception {
-        Stage currentStage = (Stage) loginPane.getScene().getWindow();
-        FXMLLoader newLoader = new FXMLLoader( getClass().getResource( "GameFrameView.fxml" ) );
-        Parent newRoot = (Parent) newLoader.load();
-        GameFrameController gfc = newLoader.getController();
-        gfc.setProperty( currentStage, newRoot );
+        if(TCPClient.getInstance().connectServer(InetAddress.getByName(addr))){
+            String playerID = textField.getText();
+            TCPClient.getInstance().sendClientIdentity(playerID);
+            GameModel.getInstance().setMyID(playerID);
+            Stage currentStage = (Stage) loginPane.getScene().getWindow();
+            GameFrameController.getInstance().setProperty( currentStage, GameFrameController.getInstance() );
+            //new RenderThread();
+            //new UpdateThread();
+        }
     }
 
     @FXML

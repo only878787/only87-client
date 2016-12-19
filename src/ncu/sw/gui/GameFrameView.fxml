@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
 
-<GridPane alignment="center" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ncu.sw.gui.GameFrameController">
+<fx:root type="javafx.scene.layout.GridPane" alignment="center" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
@@ -17,8 +17,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <Canvas fx:id="canvas" height="300.0" width="500.0" />
-      <Circle fill="BLACK" radius="10.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <Canvas fx:id="canvas" height="600.0" width="1000.0" />
       <Label fx:id="position" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
    </children>
-</GridPane>
+</fx:root>
