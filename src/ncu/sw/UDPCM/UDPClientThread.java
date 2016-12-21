@@ -42,7 +42,7 @@ public class UDPClientThread extends Thread  {
             DatagramPacket packet = new DatagramPacket(incomingData, incomingData.length );
             socket.receive(packet);
             byte[] data = packet.getData();
-            System.out.print(data.length);
+            //System.out.print(data.length);
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             try {
