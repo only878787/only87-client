@@ -1,9 +1,12 @@
 package ncu.sw.renderEngine;
 
 import javafx.scene.canvas.GraphicsContext;
+import ncu.sw.gameUtility.GameObject;
 import ncu.sw.renderGameUtility.GameObjectR;
 import ncu.sw.renderGameUtility.Point;
 import ncu.sw.gameClient.GameModel;
+
+import java.util.ArrayList;
 
 /**
  * Created by chenpu on 2016/12/17.
@@ -20,7 +23,9 @@ public class SpriteRenderEngine {
             ViewPortCenter.x = GameModel.getInstance().getPlayerXY().x - 500;
             ViewPortCenter.y = GameModel.getInstance().getPlayerXY().y - 300;
             ctx.clearRect(0, 0, 1000, 600);
-            for (GameObjectR obj : GameModel.getInstance().getDynamicObjectList()) {
+            ArrayList<GameObjectR> game= new ArrayList<>();
+            game.addAll(GameModel.getInstance().getDynamicObjectList());
+            for (GameObjectR obj :game ) {
                 if (obj.inViewPort(ViewPortCenter))
                     obj.draw(ctx, ViewPortCenter);
             }
