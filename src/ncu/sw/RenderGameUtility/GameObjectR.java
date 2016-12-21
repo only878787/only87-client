@@ -1,8 +1,8 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.GameObject;
+import ncu.sw.gameUtility.GameObject;
 
 public abstract class GameObjectR {
     private Point position;

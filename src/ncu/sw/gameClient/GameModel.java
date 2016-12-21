@@ -1,7 +1,7 @@
 package ncu.sw.gameClient;
 
-import ncu.sw.CmdGameUtility.*;
-import ncu.sw.RenderGameUtility.*;
+import ncu.sw.gameUtility.*;
+import ncu.sw.renderGameUtility.*;
 
 import java.util.ArrayList;
 
@@ -30,7 +30,7 @@ public class GameModel {
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
             dynamicObjectList.add ( playerR );
-            if(identity == playerR.getIdentity()){
+            if(identity.equals(playerR.getIdentity())){
                 mplayer = playerR;
             }
         }
@@ -52,8 +52,9 @@ public class GameModel {
     }
     public void setMyID(String id){
         identity = id;
+        System.out.println(id);
     }
-    public Point getPlayerXY(){
+    public Point getPlayerXY() {
         if(mplayer!= null)
             return mplayer.getPosition();
         return null;

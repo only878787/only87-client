@@ -1,8 +1,8 @@
-package ncu.sw.RenderEngine;
+package ncu.sw.renderEngine;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.RenderGameUtility.GameObjectR;
-import ncu.sw.RenderGameUtility.Point;
+import ncu.sw.renderGameUtility.GameObjectR;
+import ncu.sw.renderGameUtility.Point;
 import ncu.sw.gameClient.GameModel;
 
 /**
@@ -16,12 +16,14 @@ public class SpriteRenderEngine {
         this.ctx = ctx;
     }
     public void renderSprites(){
-        ViewPortCenter.x = GameModel.getInstance ().getPlayerXY ().x-500;
-        ViewPortCenter.y =GameModel.getInstance ().getPlayerXY ().y-300;
-        ctx.clearRect ( 0,0,1000,600 );
-        for ( GameObjectR obj:GameModel.getInstance ().getDynamicObjectList ()){
-            if(obj.inViewPort(ViewPortCenter))
-                obj.draw ( ctx, ViewPortCenter);
+        if(GameModel.getInstance ().getPlayerXY ()!=null) {
+            ViewPortCenter.x = GameModel.getInstance().getPlayerXY().x - 500;
+            ViewPortCenter.y = GameModel.getInstance().getPlayerXY().y - 300;
+            ctx.clearRect(0, 0, 1000, 600);
+            for (GameObjectR obj : GameModel.getInstance().getDynamicObjectList()) {
+                if (obj.inViewPort(ViewPortCenter))
+                    obj.draw(ctx, ViewPortCenter);
+            }
         }
     }
 }

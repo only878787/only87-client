@@ -1,8 +1,8 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.GameObject;
-import ncu.sw.CmdGameUtility.Item;
+import ncu.sw.gameUtility.GameObject;
+import ncu.sw.gameUtility.Item;
 
 /**
  * Created by Arson on 2016/11/1.
@@ -12,7 +12,7 @@ public class ItemR extends GameObjectR {
     private int efect;
     public ItemR(){}
     public ItemR ( double x,double y) {
-        super(x,y,20,20);
+        super(x,y,ImageUtility.itemImage.getHeight (),ImageUtility.itemImage.getWidth ());
     }
     public int getEfect(){
         return efect;
@@ -22,7 +22,9 @@ public class ItemR extends GameObjectR {
     }
     @Override
     public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
-
+        double x = getPosition ().x - ViewPortCenter.x-getWidth ()/2;
+        double y = getPosition ().y - ViewPortCenter.y-getHight ()/2;
+        ctx.drawImage ( ImageUtility.itemImage , x, y);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

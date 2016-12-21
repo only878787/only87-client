@@ -1,8 +1,8 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.GameObject;
-import ncu.sw.CmdGameUtility.Obstacle;
+import ncu.sw.gameUtility.GameObject;
+import ncu.sw.gameUtility.Obstacle;
 
 /**
  * Created by Arson on 2016/11/1.
@@ -10,11 +10,14 @@ import ncu.sw.CmdGameUtility.Obstacle;
 public class ObstacleR extends GameObjectR {
     public  ObstacleR(){}
     public ObstacleR ( double x,double y ) {
-        super ( x,y,20,20 );
+        super ( x,y,ImageUtility.obstacleImage.getHeight (),ImageUtility.obstacleImage.getWidth () );
     }
 
     @Override
     public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
+        double x = getPosition ().x - ViewPortCenter.x-getHight ()/2;
+        double y = getPosition ().y - ViewPortCenter.y-getHight ()/2;
+        ctx.drawImage ( ImageUtility.obstacleImage , x, y);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

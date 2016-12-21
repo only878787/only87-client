@@ -1,14 +1,14 @@
-package ncu.sw.RenderGameUtility;
+package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.CmdGameUtility.Coin;
-import ncu.sw.CmdGameUtility.GameObject;
+import ncu.sw.gameUtility.Coin;
+import ncu.sw.gameUtility.GameObject;
 
 public class CoinR extends GameObjectR {
     private int point;
     public CoinR(){}
     public CoinR ( double x,double y) {
-       super(x,y,20,20);
+       super(x,y,ImageUtility.coinImage.getHeight (),ImageUtility.coinImage.getWidth ());
     }
     public int getPoint(){
         return point;
@@ -18,9 +18,9 @@ public class CoinR extends GameObjectR {
     }
     @Override
     public void draw(GraphicsContext ctx, Point ViewPortCenter ){
-        double x = getPosition ().x - ViewPortCenter.x;
-        double y = getPosition ().y - ViewPortCenter.y;
-        ctx.drawImage ( ImageUtility.coinImage , x-50, y-50);
+        double x = getPosition ().x - ViewPortCenter.x-getWidth ()/2;
+        double y = getPosition ().y - ViewPortCenter.y-getHight ()/2;
+        ctx.drawImage ( ImageUtility.coinImage , x, y);
     }
     @Override
     public void copyFromCmd(GameObject cmd){
