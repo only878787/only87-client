@@ -20,16 +20,15 @@ public class GameModel {
 
         return instance;
     }
-    public ArrayList<GameObjectR> getDynamicObjectList(){
+    public synchronized ArrayList<GameObjectR> getDynamicObjectList(){
         return dynamicObjectList;
     }
-    public void update(Cmd cmd){
+    public synchronized void update(Cmd cmd){
         mplayer = null;
         dynamicObjectList.clear ();
         for( Player player:cmd.getPlayerArrayList ()){
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
-            System.out.print(playerR.getIdentity()+"test");
             dynamicObjectList.add ( playerR );
             if(identity.equals(playerR.getIdentity())){
                 mplayer = playerR;
