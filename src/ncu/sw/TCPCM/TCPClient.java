@@ -42,7 +42,7 @@ public class TCPClient {
             int timeout = 2000 ; //timeout 2秒
 
             clientSocket.connect(isa,timeout);
-            System.out.println(clientSocket.getLocalAddress() + "連線到" + clientSocket.getInetAddress());
+            //System.out.println(clientSocket.getLocalAddress() + " 連線到 " + clientSocket.getInetAddress());
 
             /* DataOutputStream */
             outToServer = new DataOutputStream(clientSocket.getOutputStream());
@@ -52,7 +52,7 @@ public class TCPClient {
             return true;
 
         } catch ( IOException e ){
-            System.out.println("connectServer IOException : " + e );
+            //System.out.println("connectServer IOException : " + e );
             //e.printStackTrace();
             return false;
         }

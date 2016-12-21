@@ -22,7 +22,7 @@ public class UDPClientThread extends Thread  {
     final  int size = 20480;
     public UDPClientThread () {
         try {
-            System.out.println( "port = "+TCPClient.getInstance().getClientPort() );
+            System.out.println( "port = " + TCPClient.getInstance().getClientPort() );
             socket = new DatagramSocket( TCPClient.getInstance().getClientPort() );
         } catch ( SocketException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class UDPClientThread extends Thread  {
             DatagramPacket packet = new DatagramPacket(incomingData, incomingData.length );
             socket.receive(packet);
             byte[] data = packet.getData();
-            System.out.print(data.length);
+            //System.out.println(data.length);
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             try {

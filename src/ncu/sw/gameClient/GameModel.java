@@ -29,7 +29,7 @@ public class GameModel {
         for( Player player:cmd.getPlayerArrayList ()){
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
-            System.out.print(playerR.getIdentity()+"test");
+            //System.out.println(playerR.getIdentity() + "test");
             dynamicObjectList.add ( playerR );
             if(identity.equals(playerR.getIdentity())){
                 mplayer = playerR;
@@ -53,7 +53,7 @@ public class GameModel {
     }
     public void setMyID(String id){
         identity = id;
-        System.out.println(id);
+        //System.out.println(id);
     }
     public Point getPlayerXY() {
         if(mplayer!= null)

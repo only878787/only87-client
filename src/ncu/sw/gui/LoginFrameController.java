@@ -21,7 +21,9 @@ import java.net.InetAddress;
 
 public class LoginFrameController{
     //private static final int port = 9487;
-    private static final String addr = "10.10.10.153";
+    //private static final String addr = "192.168.0.13"; //自家
+    //private static final String addr = "10.10.10.35"; //NW_LAB
+    private static final String addr = "10.10.10.153"; //NW_LAB 聖宏
     @FXML private Pane loginPane;
     @FXML private Button startButton;
     @FXML private TextField textField;

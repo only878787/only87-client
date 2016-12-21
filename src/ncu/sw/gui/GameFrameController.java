@@ -74,7 +74,7 @@ public class GameFrameController extends GridPane {
         /**Add keylistener to the scene**/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, keyPressedEventHandler);
         scene.addEventFilter(KeyEvent.KEY_RELEASED, keyReleasedEventHandler);
-        //DynamicObject.getInstance().updateKeyboardStatus(keyboardBitSet);
+        DynamicObject.getInstance().updateKeyboardStatus(keyboardBitSet);
         //addKeyListener(scene);
 
         StaticObject.getInstance().setImage();
