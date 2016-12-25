@@ -47,7 +47,7 @@ public class DynamicObject {
     public void updateKeyboardStatus(BitSet keyboardBitSet) {
         String buffer = "";
         Boolean attact = false;
-        int dir;
+        int dir=0;
         if(keyboardBitSet.get(KeyCode.UP.ordinal()) && !keyboardBitSet.get(KeyCode.DOWN.ordinal())){
             buffer += "U";
         }
@@ -60,7 +60,7 @@ public class DynamicObject {
         if(keyboardBitSet.get(KeyCode.LEFT.ordinal()) && !keyboardBitSet.get(KeyCode.RIGHT.ordinal())) {
             buffer += "L";
         }
-        if(keyboardBitSet.get(KeyCode.SPACE.ordinal()) {
+        if(keyboardBitSet.get(KeyCode.SPACE.ordinal())) {
             attact = true;
         }
         //System.out.println(buffer);
