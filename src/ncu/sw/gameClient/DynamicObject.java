@@ -47,7 +47,7 @@ public class DynamicObject {
     public void updateKeyboardStatus(BitSet keyboardBitSet) {
         String buffer = "";
         Boolean attact = false;
-        int dir=0;
+        int dir=87;
         if(keyboardBitSet.get(KeyCode.UP.ordinal()) && !keyboardBitSet.get(KeyCode.DOWN.ordinal())){
             buffer += "U";
         }
@@ -98,8 +98,9 @@ public class DynamicObject {
                 dir=Command.TURNWESTSOUTH;
                 break;
         }
-        if (attact) {
+        if (attact && (dir!=87)) {
             TCPClient.getInstance().sendMsg("ATK " + dir );
+            System.out.println("ATK");
         }
 
 

@@ -22,8 +22,9 @@ import java.net.InetAddress;
 
 public class LoginFrameController{
     //private static final int port = 9487;
-    private static final String addr = "140.115.59.83"; //NWLAB
+    //private static final String addr = "140.115.59.83"; //NWLAB
     //private static final String addr = "10.10.10.35"; //NWLAB_my
+    private static final String addr = "10.10.10.153"; //NWLAB內網
     @FXML private Pane loginPane;
     @FXML private Button startButton;
     @FXML private TextField textField;

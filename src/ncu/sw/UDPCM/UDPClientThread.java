@@ -23,7 +23,9 @@ public class UDPClientThread extends Thread {
     private InetAddress address;
     public UDPClientThread () {
         try {
-            address = InetAddress.getByName("140.115.59.83");
+            //address = InetAddress.getByName("140.115.59.83");
+            address = InetAddress.getByName("10.10.10.153");//NWLAB內網
+            //address = InetAddress.getByName("10.10.10.35");//NWLAB自己
             socket = new DatagramSocket();
             packet = new DatagramPacket(tests, tests.length,address,5000);
             socket.send(packet);
