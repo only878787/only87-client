@@ -36,7 +36,7 @@ public class LoginFrameController{
             TCPClient.getInstance().sendClientIdentity(playerID);
             GameModel.getInstance().setMyID(playerID);
             Stage currentStage = (Stage) loginPane.getScene().getWindow();
-            GameFrameController.getInstance().setProperty( currentStage, GameFrameController.getInstance() );
+            GameFrameController.getInstance().setProperty( currentStage, GameFrameController.getInstance().getBorderPane() );
             //new RenderThread();
             //new UpdateThread();
         }
