@@ -9,6 +9,7 @@ import java.util.Timer;
  * Created by Arson on 2016/11/1.
  */
 public class Player extends GameObject{
+    private int effectNum = 0 ;
     private String identity;
     private int score;
     private InetAddress address;
@@ -102,4 +103,10 @@ public class Player extends GameObject{
         this.itemTimer = itemTimer;
     }
 
+    public int getEffectNum(){
+        return effectNum;
+    }
+    public void setEffectNum(int effectNum){
+        this.effectNum = effectNum;
+    }
 }

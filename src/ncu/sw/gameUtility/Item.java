@@ -6,11 +6,6 @@ import javafx.scene.image.Image;
  * Created by Arson on 2016/11/1.
  */
 public class Item extends  GameObject{
-    public final int nonItem = 0;
-    public final int fastItem = 1;
-    public final int slowItem = 2;
-    public final int bigItem = 3;
-    public final int inverseItem = 4;
     private int efect;
     public Item(int x,int y) {
         super(x,y,35,35);
