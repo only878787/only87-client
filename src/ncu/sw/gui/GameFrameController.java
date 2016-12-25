@@ -66,7 +66,7 @@ public class GameFrameController {
         return instance;
     }
 
-    public void setProperty( Stage stageBuffer, Parent root) {
+    public void setProperty( Stage stageBuffer) {
         stageBuffer.setTitle("Only87-Gaming");
         stageBuffer.setResizable(false);
         scene = new Scene(this.borderPane);
@@ -76,7 +76,7 @@ public class GameFrameController {
         /**Set Graphics Context 2D ready**/
         gc = canvas.getGraphicsContext2D();
 
-        statusBar.setText("123");
+        statusBar.setText("@@@");
 
         /**Add keylistener to the scene**/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, keyPressedEventHandler);
