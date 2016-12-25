@@ -15,9 +15,10 @@ public class ObstacleR extends GameObjectR {
 
     @Override
     public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
-        double x = getPosition ().x - ViewPortCenter.x;
-        double y = getPosition ().y - ViewPortCenter.y;
-        ctx.drawImage ( ImageUtility.obstacleImage , x-50, y-50);
+        setHightandWidth(ImageUtility.obstacleImage.getHeight(),ImageUtility.obstacleImage.getWidth());
+        double x = getPosition ().x - ViewPortCenter.x-getWidth()/2;
+        double y = getPosition ().y - ViewPortCenter.y-getHight()/2;
+        ctx.drawImage ( ImageUtility.obstacleImage , x, y);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

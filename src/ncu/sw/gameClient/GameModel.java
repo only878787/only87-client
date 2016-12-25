@@ -10,8 +10,11 @@ public class GameModel {
     private ArrayList<GameObjectR> dynamicObjectList;
     private PlayerR mplayer = null;
     private String identity;
+    private LeaderBoard leaderBoard;
+
     private GameModel(){
         dynamicObjectList = new ArrayList<>();
+        leaderBoard = new LeaderBoard();
     }
     public static GameModel getInstance() {
         if (instance == null) {
@@ -26,7 +29,9 @@ public class GameModel {
     public synchronized void update(Cmd cmd){
         mplayer = null;
         dynamicObjectList.clear ();
+        leaderBoard.clear();
         for( Player player:cmd.getPlayerArrayList ()){
+            leaderBoard.add(player);
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
             dynamicObjectList.add ( playerR );

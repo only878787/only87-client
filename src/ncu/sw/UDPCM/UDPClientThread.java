@@ -1,37 +1,39 @@
 package ncu.sw.UDPCM;
 
-import ncu.sw.TCPCM.TCPClient;
+
 import ncu.sw.gameClient.GameModel;
 import ncu.sw.gameUtility.Cmd;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.Socket;
-import java.net.SocketException;
+import java.net.*;
+import java.util.TimerTask;
 
 /**
  * Created by nwlabclub on 2016/12/8.
  */
-public class UDPClientThread extends Thread  {
+public class UDPClientThread extends Thread {
     protected boolean check = true;
     protected DatagramSocket socket;
+    private DatagramPacket packet;
+    byte [] tests = new byte[0];
     private Cmd cmd;
     final  int size = 20480;
+    private InetAddress address;
     public UDPClientThread () {
         try {
-            System.out.println( "port = "+TCPClient.getInstance().getClientPort() );
-            socket = new DatagramSocket( TCPClient.getInstance().getClientPort() );
+            address = InetAddress.getByName("140.115.59.83");
+            socket = new DatagramSocket();
+            packet = new DatagramPacket(tests, tests.length,address,5000);
+            socket.send(packet);
+            System.out.print("I send the test\n");
         } catch ( SocketException e) {
             e.printStackTrace();
+        } catch (IOException e ){
+            e.printStackTrace();
         }
-
         cmd = new Cmd();
-    }
-    public UDPClientThread(Cmd cmd) {
-        this.cmd = cmd;
     }
     public  Cmd getCmd() {
         return  cmd;
@@ -39,10 +41,11 @@ public class UDPClientThread extends Thread  {
     public void receive () {
         try {
             byte[] incomingData = new byte[size];
-            DatagramPacket packet = new DatagramPacket(incomingData, incomingData.length );
+            packet.setData(incomingData);
+            packet.setLength(size);
             socket.receive(packet);
             byte[] data = packet.getData();
-            //System.out.print(data.length);
+
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             try {
@@ -57,12 +60,11 @@ public class UDPClientThread extends Thread  {
             e.printStackTrace();
             check = false;
         }
-        //socket.close();
     }
-
     public synchronized void run() {
         while (check) {
             this.receive();
         }
+        socket.close();
     }
 }
