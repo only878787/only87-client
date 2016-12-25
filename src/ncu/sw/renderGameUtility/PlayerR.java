@@ -13,10 +13,12 @@ public class PlayerR extends GameObjectR {
     private String identity;
     private int score;
     private int count87;
+    private int radius;
     public PlayerR(){
         identity = "";
         score = 0;
         count87 = 0;
+        radius = 0;
     }
     public PlayerR ( double x,double y,String id){
         super(x,y,ImageUtility.playerImage.getHeight(),ImageUtility.playerImage.getWidth());
@@ -28,10 +30,10 @@ public class PlayerR extends GameObjectR {
     }
     @Override
     public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
-        setHightandWidth(ImageUtility.playerImage.getHeight(),ImageUtility.playerImage.getWidth());
+        setHightandWidth(radius*2,radius*2);
         double x = getPosition ().x - ViewPortCenter.x-getWidth()/2;
         double y = getPosition ().y - ViewPortCenter.y-getHight()/2;
-        ctx.drawImage ( ImageUtility.playerImage , x, y);
+        ctx.drawImage ( ImageUtility.playerImage , x, y,radius*2,radius*2);
         ctx.setTextAlign ( TextAlignment.CENTER );
         ctx.fillText ( identity+"  score: "+score+"  87: "+count87,x+getWidth ()/2,y-10);
     }
@@ -42,6 +44,7 @@ public class PlayerR extends GameObjectR {
             identity = ( (Player) cmd ).getId ();
             score = ((Player)cmd).getScore();
             count87 = ((Player)cmd).getCount87();
+            radius = ((Player)cmd).getRadius();
         }
     }
 }
