@@ -2,6 +2,8 @@ package ncu.sw.gameUtility;
 
 
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.util.Timer;
 
 /**
  * Created by Arson on 2016/11/1.
@@ -10,8 +12,12 @@ public class Player extends GameObject{
     private String identity;
     private int score;
     private InetAddress address;
+    private InetSocketAddress socketAddress;
     private int count87;
     private int speed;
+    private int radius = 50;
+    private int moveDir = 1;
+    private Timer itemTimer;
 
     public void setCount87(int count87) {
         this.count87 = count87;
@@ -34,6 +40,20 @@ public class Player extends GameObject{
         speed = 20;
     }
 
+    public InetSocketAddress getSocketAddress() {
+        return socketAddress;
+    }
+
+    public Player(int x, int y, String id, InetSocketAddress bufAddress){
+        super(x,y,50,50);
+        identity = id;
+        socketAddress = bufAddress;
+        setAttribute(0);
+        count87  = 0;
+        speed = 20;
+    }
+
+
     public int getScore() {
         return score;
     }
@@ -55,4 +75,31 @@ public class Player extends GameObject{
     public int getCount87() {
         return count87;
     }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+
+    public int getMoveDir() {
+        return moveDir;
+    }
+
+    public void setMoveDir(int moveDir) {
+        this.moveDir = moveDir;
+    }
+
+
+    public Timer getItemTimer() {
+        return itemTimer;
+    }
+
+    public void setItemTimer(Timer itemTimer) {
+        this.itemTimer = itemTimer;
+    }
+
 }
