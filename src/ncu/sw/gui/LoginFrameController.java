@@ -1,6 +1,7 @@
 package ncu.sw.gui;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,16 +31,13 @@ public class LoginFrameController{
     }
 
     @FXML
-    private void StartButtonOnClicked() throws Exception {
-        if(TCPClient.getInstance().connectServer(InetAddress.getByName(addr))){
-            String playerID = textField.getText();
-            TCPClient.getInstance().sendClientIdentity(playerID);
-            GameModel.getInstance().setMyID(playerID);
-            Stage currentStage = (Stage) loginPane.getScene().getWindow();
-            GameFrameController.getInstance().setProperty( currentStage, GameFrameController.getInstance().getBorderPane() );
-            //new RenderThread();
-            //new UpdateThread();
-        }
+    public void textAction(ActionEvent ae)throws Exception{
+        login();
+    }
+
+    @FXML
+    private void StartButtonOnClicked()throws Exception{
+        login();
     }
 
     @FXML
@@ -59,4 +57,17 @@ public class LoginFrameController{
         stageBuffer.setScene(new Scene(root, 1000, 600));
         stageBuffer.show();
     }
+
+    private void login()throws Exception{
+        if(TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
+            String playerID = textField.getText();
+            TCPClient.getInstance().sendClientIdentity(playerID);
+            GameModel.getInstance().setMyID(playerID);
+            Stage currentStage = (Stage) loginPane.getScene().getWindow();
+            GameFrameController.getInstance().setProperty(currentStage, GameFrameController.getInstance().getBorderPane());
+            //new RenderThread();
+            //new UpdateThread();
+        }
+    }
+
 }
