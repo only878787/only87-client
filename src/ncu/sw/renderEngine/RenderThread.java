@@ -6,6 +6,7 @@ import ncu.sw.gameClient.DynamicObject;
 import ncu.sw.gameClient.GameModel;
 import ncu.sw.gameClient.StaticObject;
 import ncu.sw.gui.GameFrameController;
+import ncu.sw.renderGameUtility.Point;
 
 /**
  * Created by onlyfly34 on 2016/12/12.
@@ -39,10 +40,13 @@ public class RenderThread {
 
     private void procedure(){
         GameFrameController.getInstance().gc.clearRect(0, 0, canvasX, canvasY);
-        SceneRenderEngine.getInstance().updateScene(
-                GameModel.getInstance().getPlayerXY().x,
-                GameModel.getInstance().getPlayerXY().y
-        );
+        Point p = GameModel.getInstance().getPlayerXY();
+        if(p!=null) {
+            SceneRenderEngine.getInstance().updateScene(
+                    p.x,
+                    p.y
+            );
+        }
         sre.renderSprites();
     }
 }

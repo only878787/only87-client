@@ -3,7 +3,11 @@ package ncu.sw.gameUtility;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Created by NiHao on 2016/11/12.
+ */
 public class Cmd implements java.io.Serializable {
+
     private static final long serialVersionUID = 1L;
     private ArrayList<Coin> coinArrayList;
     private ArrayList<Item> itemArrayList;
@@ -16,7 +20,7 @@ public class Cmd implements java.io.Serializable {
         obstacleArrayList = new ArrayList<Obstacle>();
         playerArrayList = new ArrayList<Player>();
     }
-
+    
     public ArrayList<Coin> getCoinArrayList() {
         return coinArrayList;
     }
