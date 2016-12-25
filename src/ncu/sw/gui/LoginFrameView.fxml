@@ -18,12 +18,12 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <TextField fx:id="textField" layoutX="332.0" layoutY="355.0" prefHeight="43.0" prefWidth="217.0">
+            <TextField fx:id="textField" layoutX="332.0" layoutY="355.0" onAction="#textAction" prefHeight="43.0" prefWidth="217.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <Button fx:id="startButton" onAction="#StartButtonOnClicked" layoutX="575.0" layoutY="356.0" mnemonicParsing="false" text="Start">
+            <Button fx:id="startButton" layoutX="575.0" layoutY="356.0" mnemonicParsing="false" onAction="#StartButtonOnClicked" text="Start">
                <font>
                   <Font size="20.0" />
                </font>

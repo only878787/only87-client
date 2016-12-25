@@ -76,6 +76,8 @@ public class GameFrameController {
         /**Set Graphics Context 2D ready**/
         gc = canvas.getGraphicsContext2D();
 
+        statusBar.setText("123");
+
         /**Add keylistener to the scene**/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, keyPressedEventHandler);
         scene.addEventFilter(KeyEvent.KEY_RELEASED, keyReleasedEventHandler);

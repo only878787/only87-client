@@ -70,9 +70,11 @@ public class DynamicObject {
             case "DR": TCPClient.getInstance().inputMoves(Command.TURNEASTSOUTH);break;
             case "DL": TCPClient.getInstance().inputMoves(Command.TURNWESTSOUTH);break;
         }
-        //position.setText("Position = " + Cx + "," + Cy);
-        //gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        //paintMap(x, y);
+        try {
+            Thread.sleep(50);
+        } catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public int getDrawCoordinateX(){

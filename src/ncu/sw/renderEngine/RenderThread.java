@@ -22,15 +22,15 @@ public class RenderThread {
 
         Thread renderThread = new Thread(() -> {
             while (true) {
-                long start = System.currentTimeMillis();
+                //long start = System.currentTimeMillis();
                 Platform.runLater(() -> procedure() );
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException exc) {
                     throw new Error("Unexpected interruption", exc);
                 }
-                long end = System.currentTimeMillis();
-                GameFrameController.getInstance().getStatusBar().setText("@@@123");
+                //long end = System.currentTimeMillis();
+                //GameFrameController.getInstance().getStatusBar().setText("@@@123");
             }
         });
         renderThread.setDaemon(true);
