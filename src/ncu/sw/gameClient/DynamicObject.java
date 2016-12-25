@@ -46,6 +46,8 @@ public class DynamicObject {
      */
     public void updateKeyboardStatus(BitSet keyboardBitSet) {
         String buffer = "";
+        Boolean attact = false;
+        int dir;
         if(keyboardBitSet.get(KeyCode.UP.ordinal()) && !keyboardBitSet.get(KeyCode.DOWN.ordinal())){
             buffer += "U";
         }
@@ -58,20 +60,51 @@ public class DynamicObject {
         if(keyboardBitSet.get(KeyCode.LEFT.ordinal()) && !keyboardBitSet.get(KeyCode.RIGHT.ordinal())) {
             buffer += "L";
         }
+        if(keyboardBitSet.get(KeyCode.SPACE.ordinal()) {
+            attact = true;
+        }
         //System.out.println(buffer);
 
         switch( buffer ){
-            case "U" : TCPClient.getInstance().inputMoves(Command.TURNNORTH);break;
-            case "D" : TCPClient.getInstance().inputMoves(Command.TURNSOUTH);break;
-            case "R" : TCPClient.getInstance().inputMoves(Command.TURNEAST);break;
-            case "L" : TCPClient.getInstance().inputMoves(Command.TURNWEST); break;
-            case "UR": TCPClient.getInstance().inputMoves(Command.TURNEASTNORTH);break;
-            case "UL": TCPClient.getInstance().inputMoves(Command.TURNWESTNORTH);break;
-            case "DR": TCPClient.getInstance().inputMoves(Command.TURNEASTSOUTH);break;
-            case "DL": TCPClient.getInstance().inputMoves(Command.TURNWESTSOUTH);break;
+            case "U" :
+                TCPClient.getInstance().inputMoves(Command.TURNNORTH);
+                dir=Command.TURNNORTH;
+                break;
+            case "D" :
+                TCPClient.getInstance().inputMoves(Command.TURNSOUTH);
+                dir=Command.TURNSOUTH;break;
+            case "R" :
+                TCPClient.getInstance().inputMoves(Command.TURNEAST);
+                dir=Command.TURNEAST;
+                break;
+            case "L" :
+                TCPClient.getInstance().inputMoves(Command.TURNWEST);
+                dir=Command.TURNWEST;
+                break;
+            case "UR":
+                TCPClient.getInstance().inputMoves(Command.TURNEASTNORTH);
+                dir=Command.TURNEASTNORTH;
+                break;
+            case "UL":
+                TCPClient.getInstance().inputMoves(Command.TURNWESTNORTH);
+                dir=Command.TURNWESTNORTH;
+                break;
+            case "DR":
+                TCPClient.getInstance().inputMoves(Command.TURNEASTSOUTH);
+                dir=Command.TURNEASTSOUTH;
+                break;
+            case "DL":
+                TCPClient.getInstance().inputMoves(Command.TURNWESTSOUTH);
+                dir=Command.TURNWESTSOUTH;
+                break;
         }
+        if (attact) {
+            TCPClient.getInstance().sendMsg("ATK " + dir );
+        }
+
+
         try {
-            Thread.sleep(50);
+            Thread.sleep(20);
         } catch(InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
