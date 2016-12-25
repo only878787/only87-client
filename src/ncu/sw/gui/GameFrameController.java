@@ -4,6 +4,9 @@ package ncu.sw.gui;
  * Created by onlyfly34 on 2016/11/12.
  */
 
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
+import org.controlsfx.control.StatusBar;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
@@ -30,10 +33,11 @@ import java.io.IOException;
 import java.util.BitSet;
 import java.util.Random;
 
-public class GameFrameController extends GridPane {
+public class GameFrameController {
     @FXML private Canvas canvas;
-    @FXML public Label position;
-    @FXML private Circle circle;
+    @FXML private Label position;
+    @FXML private StatusBar statusBar;
+    @FXML private BorderPane borderPane;
     private static GameFrameController instance = null;
     public GraphicsContext gc;
     private Scene scene;
@@ -41,7 +45,7 @@ public class GameFrameController extends GridPane {
 
     private GameFrameController(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource( "GameFrameView.fxml" ));
-        loader.setRoot(this);
+        loader.setRoot(this.borderPane);
         loader.setController(this);
         //Parent root = ( Parent ) loader.load();
         try {
@@ -64,7 +68,8 @@ public class GameFrameController extends GridPane {
 
     public void setProperty( Stage stageBuffer, Parent root) {
         stageBuffer.setTitle("Only87-Gaming");
-        scene = new Scene(this);
+        stageBuffer.setResizable(false);
+        scene = new Scene(this.borderPane);
         stageBuffer.setScene(scene);
         stageBuffer.show();
 
@@ -83,6 +88,10 @@ public class GameFrameController extends GridPane {
         UDPUpdateServer.getInstance();
         new RenderThread();
         //new UpdateThread();
+    }
+
+    public BorderPane getBorderPane(){
+        return borderPane;
     }
 
     private void addKeyListener(Scene sceneBuffer) {
@@ -124,5 +133,9 @@ public class GameFrameController extends GridPane {
 
     public Canvas getCanvas(){
         return canvas;
+    }
+    public Label getPositionLabel() { return position; }
+    public StatusBar getStatusBar() {
+        return statusBar;
     }
 }

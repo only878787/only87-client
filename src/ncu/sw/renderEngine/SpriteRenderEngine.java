@@ -22,7 +22,7 @@ public class SpriteRenderEngine {
         if(GameModel.getInstance ().getPlayerXY ()!=null) {
             ViewPortCenter.x = GameModel.getInstance().getPlayerXY().x - 500;
             ViewPortCenter.y = GameModel.getInstance().getPlayerXY().y - 300;
-            ctx.clearRect(0, 0, 1000, 600);
+            //ctx.clearRect(0, 0, 1000, 600);
 
             ArrayList<GameObjectR> game = new ArrayList<>();
             game.addAll(GameModel.getInstance().getDynamicObjectList());

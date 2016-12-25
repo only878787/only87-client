@@ -11,28 +11,38 @@ import ncu.sw.gui.GameFrameController;
  * Created by onlyfly34 on 2016/12/12.
  */
 public class RenderThread {
-    public RenderThread(){
-        double canvasX = GameFrameController.getInstance().getCanvas().getWidth();
-        double canvasY = GameFrameController.getInstance().getCanvas().getHeight();
+    private double canvasX;
+    private double canvasY;
+    private SpriteRenderEngine sre;
 
-        SpriteRenderEngine sre = new SpriteRenderEngine( GameFrameController.getInstance().gc );
+    public RenderThread(){
+        canvasX = GameFrameController.getInstance().getCanvas().getWidth();
+        canvasY = GameFrameController.getInstance().getCanvas().getHeight();
+        sre = new SpriteRenderEngine( GameFrameController.getInstance().gc );
+
         Thread renderThread = new Thread(() -> {
             while (true) {
-                GameFrameController.getInstance().gc.clearRect(0, 0, canvasX, canvasY);
-                Platform.runLater(() -> SceneRenderEngine.getInstance().updateScene(
-                        (int) GameModel.getInstance().getPlayerXY().x,
-                        (int) GameModel.getInstance().getPlayerXY().y)
-                );
-                sre.renderSprites();
-                //GameFrameController.getInstance().gc.clearRect(0, 0, canvasX, canvasY);
+                long start = System.currentTimeMillis();
+                Platform.runLater(() -> procedure() );
                 try {
                     Thread.sleep(50);
                 } catch (InterruptedException exc) {
                     throw new Error("Unexpected interruption", exc);
                 }
+                long end = System.currentTimeMillis();
+                GameFrameController.getInstance().getStatusBar().setText("@@@123");
             }
         });
         renderThread.setDaemon(true);
         renderThread.start();
+    }
+
+    private void procedure(){
+        GameFrameController.getInstance().gc.clearRect(0, 0, canvasX, canvasY);
+        SceneRenderEngine.getInstance().updateScene(
+                GameModel.getInstance().getPlayerXY().x,
+                GameModel.getInstance().getPlayerXY().y
+        );
+        sre.renderSprites();
     }
 }

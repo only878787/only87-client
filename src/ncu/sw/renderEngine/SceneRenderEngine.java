@@ -29,47 +29,50 @@ public class SceneRenderEngine {
         return instance;
     }
 
-    public void cxToDx(){
+    public void updateScene(double cx, double cy){
+        double dx = 0;
+        double dy = 0;
+        double rectangleWidth;
+        double rectangleHeight;
+        double canvasWidth = GameFrameController.getInstance().getCanvas().getWidth();
+        double canvasHeight = GameFrameController.getInstance().getCanvas().getHeight();
 
-    }
+        if(cx<0 || cy<0){
+            throw new IllegalArgumentException();
+        }
 
-    public void updateScene(int cx, int cy){
-        GameFrameController.getInstance().position.setText("Position = "+cx+","+cy);
-        //if(dx<0 || dy<0 || cx<0 || cy<0 || mapBlockX<0 || mapBlockY<0){
-            //throw new IllegalArgumentException();
-        //}
-        System.out.println("Start painting rectangle");
-        Rectangle rect = new Rectangle(50,50,400,400);
+        /** Check x-coordinate viewport **/
+        if( cx-canvasWidth/2 < 0 ){
+            dx = canvasWidth/2 - cx;
+            rectangleWidth = canvasWidth - dx;
+        }
+        else if ( cx+canvasWidth/2 > 5000){
+            rectangleWidth = canvasWidth/2 + (5000-cx);
+        }
+        else{
+            rectangleWidth = canvasWidth;
+        }
+
+        /** Check y-coordinate viewport **/
+        if( cy-canvasHeight/2 < 0 ){
+            dy = canvasHeight/2 - cy;
+            rectangleHeight = canvasHeight - dy;
+        }
+        else if ( cy+canvasHeight/2 > 3000){
+            rectangleHeight = canvasHeight/2 + ( 3000-cy );
+        }
+        else{
+            rectangleHeight = canvasHeight;
+        }
+
+        //Update current location of virtual character.
+        GameFrameController.getInstance().getPositionLabel().setText("Position = "+cx+","+cy);
+
+        //Draw white rectangle as background scene.
+        Rectangle rect = new Rectangle( dx, dy, rectangleWidth, rectangleHeight );
+        GameFrameController.getInstance().gc.save();
         GameFrameController.getInstance().gc.setFill(Color.WHITE);
         GameFrameController.getInstance().gc.fillRect(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
-
-        Rectangle rect2 = new Rectangle(700,300,400,400);
-        GameFrameController.getInstance().gc.setFill(Color.BLACK);
-        GameFrameController.getInstance().gc.fillRect(rect2.getX(), rect2.getY(), rect2.getWidth(), rect2.getHeight());
-
-
-        //int canvasX = (int)GameFrameController.getInstance().getCanvas().getWidth();
-        //int canvasY = (int)GameFrameController.getInstance().getCanvas().getHeight();
-        //int mapSizeX = mapBlockX*100;
-        //int mapSizeY = mapBlockY*100;
-        //int canvasBiasX = cx-canvasX;
-        //int canvasBiasY = canvasY-300;
-        //int bias = 100- GameModel.getInstance().;
-        //int canvasBiasX = canvasX-500;
-        //int canvasBiasY = canvasY-300;*/
-        //int counter = 0;
-        /*for(int i=0 ; i<mapBlockX ; i++){
-            for(int j=0 ; j<mapBlockY ; j++){
-                int x_buffer = dx+i*100-mapSizeX/2+canvasBiasX/2;
-                int y_buffer = dy+j*100-mapSizeY/2+canvasBiasY/2;
-                if(x_buffer >= -bias && x_buffer <= canvasX-DynamicObject.getInstance().getMoveSteps() &&
-                y_buffer >= -bias && y_buffer <= canvasY-DynamicObject.getInstance().getMoveSteps()) { //0-75,500+75,0-75,200+75
-                    GameFrameController.getInstance().gc.drawImage(StaticObject.getInstance().getImage()[StaticObject.getInstance().getMap()[j][i]], x_buffer, y_buffer);
-                    counter++;
-                }
-            }
-        }*/
-        //GameFrameController.getInstance().gc.fillOval(250-8, 150, 16, 16);
-        //System.out.println("DrawImage function is called "+counter+" times");
+        GameFrameController.getInstance().gc.restore();
     }
 }
