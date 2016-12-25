@@ -12,9 +12,11 @@ public class PlayerR extends GameObjectR {
 
     private String identity;
     private int score;
+    private int count87;
     public PlayerR(){
         identity = "";
         score = 0;
+        count87 = 0;
     }
     public PlayerR ( double x,double y,String id){
         super(x,y,ImageUtility.playerImage.getHeight(),ImageUtility.playerImage.getWidth());
@@ -31,7 +33,7 @@ public class PlayerR extends GameObjectR {
         double y = getPosition ().y - ViewPortCenter.y-getHight()/2;
         ctx.drawImage ( ImageUtility.playerImage , x, y);
         ctx.setTextAlign ( TextAlignment.CENTER );
-        ctx.fillText ( identity+"  score: "+score,x+getWidth ()/2,y-10);
+        ctx.fillText ( identity+"  score: "+score+"  87: "+count87,x+getWidth ()/2,y-10);
     }
     @Override
     public void copyFromCmd(GameObject cmd){
@@ -39,6 +41,7 @@ public class PlayerR extends GameObjectR {
             setPosition ( cmd.getPositionX (),cmd.getPositionY () );
             identity = ( (Player) cmd ).getId ();
             score = ((Player)cmd).getScore();
+            count87 = ((Player)cmd).getCount87();
         }
     }
 }

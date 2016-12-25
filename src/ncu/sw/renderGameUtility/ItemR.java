@@ -10,9 +10,11 @@ import ncu.sw.gameUtility.Item;
 public class ItemR extends GameObjectR {
 
     private int efect;
-    public ItemR(){}
+    public ItemR(){
+        setHightandWidth(70,70);
+    }
     public ItemR ( double x,double y) {
-        super(x,y,20,20);
+        super(x,y,70,70);
     }
     public int getEfect(){
         return efect;
@@ -22,9 +24,9 @@ public class ItemR extends GameObjectR {
     }
     @Override
     public void draw (GraphicsContext ctx, Point ViewPortCenter ) {
-        double x = getPosition ().x - ViewPortCenter.x;
-        double y = getPosition ().y - ViewPortCenter.y;
-        ctx.drawImage ( ImageUtility.itemImage , x-50, y-50);
+        double x = getPosition ().x - ViewPortCenter.x-getWidth()/2;
+        double y = getPosition ().y - ViewPortCenter.y-getHight()/2;
+        ctx.drawImage ( ImageUtility.itemImage , x, y,70,70);
     }
     @Override
     public void copyFromCmd(GameObject cmd){

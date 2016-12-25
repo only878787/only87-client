@@ -1,6 +1,8 @@
 package ncu.sw.renderGameUtility;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import ncu.sw.gameUtility.Coin;
 import ncu.sw.gameUtility.GameObject;
@@ -26,8 +28,11 @@ public class CoinR extends GameObjectR {
         double y = getPosition ().y - ViewPortCenter.y-getHight()/2;
         ctx.drawImage ( ImageUtility.coinImage , x, y);
         ctx.setTextAlign ( TextAlignment.CENTER );
-        ctx.fillText ( "point: "+point,x+getWidth ()/2,y-10);
-
+        ctx.save();
+        ctx.setFill(Color.WHITE);
+        ctx.setFont(Font.font(24));
+        ctx.fillText ( String.valueOf(point),x+getWidth ()/2,y+getHight()/2+10);
+        ctx.restore();
     }
     @Override
     public void copyFromCmd(GameObject cmd){
