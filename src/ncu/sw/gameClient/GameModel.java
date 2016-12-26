@@ -4,17 +4,19 @@ import ncu.sw.gameUtility.*;
 import ncu.sw.renderGameUtility.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GameModel {
     private static GameModel instance= null;
     private ArrayList<GameObjectR> dynamicObjectList;
+    private ArrayList<PlayerR> playerRList;
     private PlayerR mplayer = null;
     private String identity;
-    private LeaderBoard leaderBoard;
 
     private GameModel(){
         dynamicObjectList = new ArrayList<>();
-        leaderBoard = new LeaderBoard();
+        playerRList = new ArrayList<>();
     }
     public static GameModel getInstance() {
         if (instance == null) {
@@ -26,19 +28,30 @@ public class GameModel {
     public synchronized ArrayList<GameObjectR> getDynamicObjectList(){
         return dynamicObjectList;
     }
+    public synchronized ArrayList<PlayerR> getPlayerRList(){
+        return playerRList;
+    }
     public synchronized void update(Cmd cmd){
         mplayer = null;
         dynamicObjectList.clear ();
-        leaderBoard.clear();
+        playerRList.clear();
         for( Player player:cmd.getPlayerArrayList ()){
-            leaderBoard.add(player);
             PlayerR playerR = new PlayerR (  );
             playerR.copyFromCmd ( player );
             dynamicObjectList.add ( playerR );
+            playerRList.add(playerR);
             if(identity.equals(playerR.getIdentity())){
                 mplayer = playerR;
             }
         }
+        Collections.sort(playerRList,
+                new Comparator<PlayerR>() {
+                    public int compare(PlayerR p1, PlayerR p2) {
+                        if(p1.getCount87()!=p2.getCount87())
+                            return p2.getCount87()-p1.getCount87();
+                        return p2.getScore()-p1.getScore();
+                    }
+                });
         for( Coin coin:cmd.getCoinArrayList ()){
             CoinR coinR = new CoinR (  );
             coinR.copyFromCmd ( coin );

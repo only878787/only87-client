@@ -27,11 +27,9 @@ public class LeaderBoard extends GameObjectR {
         Collections.sort(plarerList,
                 new Comparator<Player>() {
                     public int compare(Player o1, Player o2) {
-                        if (o1.getScore()>o2.getScore())
-                            return 1;
-                        else if (o1.getScore()==o2.getScore())
-                            return 0;
-                        return -1;
+                        if(o1.getCount87()!=o2.getCount87())
+                            return o1.getCount87()-o2.getCount87();
+                        return o1.getScore()-o2.getScore();
                     }
                 });
     }
