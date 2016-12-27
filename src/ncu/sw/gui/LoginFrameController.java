@@ -79,8 +79,8 @@ public class LoginFrameController{
         stageBuffer.show();
     }
 
-    private void login()throws Exception{
-        if(TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
+    private void login()throws Exception {
+        if (TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
             String playerID = textField.getText();
             TCPClient.getInstance().sendClientIdentity(playerID);
             GameModel.getInstance().setMyID(playerID);
@@ -88,7 +88,10 @@ public class LoginFrameController{
             GameFrameController.getInstance().setProperty(currentStage, GameFrameController.getInstance().getBorderPane());
             //new RenderThread();
             //new UpdateThread();
+        }else{
+            System.out.println("Connecting error");
+            message.setText("Connecting error");
+            message.setVisible(true);
         }
     }
-
 }
