@@ -34,6 +34,9 @@ public class SpriteRenderEngine {
                 }
             }
         }
+        GameFrameController.getInstance().firstLabel.setText("Loading");
+        GameFrameController.getInstance().secondLabel.setText("Loading");
+        GameFrameController.getInstance().thirdLabel.setText("Loading");
         ArrayList<PlayerR> plList = GameModel.getInstance().getPlayerRList();
         if(plList.size()>=1)
             GameFrameController.getInstance().firstLabel.setText(

@@ -6,6 +6,7 @@ package ncu.sw.TCPCM;
 
 import ncu.sw.TCPCMCommand.*;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -60,6 +61,20 @@ public class TCPClient {
 
     public void sendClientIdentity( String identity ){
         sendMsg("IDENTITY " + identity );
+    }
+
+    public boolean sendClientIdentityWait( String identity ){
+        sendMsg("IDENTITY " + identity );
+        try{
+            DataInputStream inFromServer = new DataInputStream( clientSocket.getInputStream() );
+            String str = inFromServer.readUTF();
+            if( str.equals( "IdentityOK") ){
+                return true;
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void sendMsg(String str){
