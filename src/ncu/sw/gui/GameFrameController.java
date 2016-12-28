@@ -70,7 +70,7 @@ public class GameFrameController {
         return instance;
     }
 
-    public void setProperty( Stage stageBuffer, Parent root) {
+    public void setProperty( Stage stageBuffer) {
         stageBuffer.setTitle("Only87-Gaming");
         stageBuffer.setResizable(false);
         scene = new Scene(this.pane);
@@ -80,8 +80,6 @@ public class GameFrameController {
         /**Set Graphics Context 2D ready**/
         gc = canvas.getGraphicsContext2D();
 
-        //statusBar.setText("123");
-        //leaderBoard.setStyle("-fx-background-color: white");
         fImageView.setImage(ImageUtility.goldImage);
         sImageView.setImage(ImageUtility.silverImage);
         tImageView.setImage(ImageUtility.brownImage);
