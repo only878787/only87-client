@@ -47,4 +47,11 @@ public class PlayerR extends GameObjectR {
             radius = ((Player)cmd).getRadius();
         }
     }
+    public int getScore() {
+        return score;
+    }
+
+    public int getCount87() {
+        return count87;
+    }
 }

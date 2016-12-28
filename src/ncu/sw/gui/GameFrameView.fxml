@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
 <?import org.controlsfx.control.StatusBar?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <Canvas fx:id="canvas" height="600.0" width="1000.0" BorderPane.alignment="CENTER" />
-   </center>
-   <top>
-      <Label fx:id="position" text="Label" BorderPane.alignment="TOP_CENTER" />
-   </top>
-   <bottom>
-      <StatusBar fx:id="statusBar" BorderPane.alignment="BOTTOM_CENTER" />
-   </bottom>
-</BorderPane>
+
+<StackPane fx:id="pane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children>
+<Canvas fx:id="canvas" height="600.0" width="1000.0" />
+<Label fx:id="position" layoutX="482.0" layoutY="5.0" maxHeight="20.0" StackPane.alignment="TOP_CENTER" />
+<VBox fx:id="leaderBoard" alignment="TOP_RIGHT" layoutX="790.0" layoutY="8.0" maxHeight="150.0" maxWidth="200.0" prefHeight="150.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT">
+ <children>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+       <children>
+          <ImageView fx:id="fImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                <Image url="@../../../../image/gold.png" />
+             </image>
+          </ImageView>
+          <Label fx:id="firstLabel" prefHeight="72.0" prefWidth="205.0" text="Loading" textAlignment="CENTER" />
+       </children>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+       <children>
+          <ImageView fx:id="sImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                <Image url="@../../../../image/silver.png" />
+             </image>
+          </ImageView>
+          <Label fx:id="secondLabel" prefHeight="86.0" prefWidth="184.0" text="Loading" textAlignment="CENTER" />
+       </children>
+    </HBox>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+       <children>
+          <ImageView fx:id="tImageView" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+             <image>
+                <Image url="@../../../../image/brown.png" />
+             </image>
+          </ImageView>
+          <Label fx:id="thirdLabel" prefHeight="98.0" prefWidth="224.0" text="Loading" textAlignment="CENTER" />
+       </children>
+    </HBox>
+ </children>
+</VBox>
+
+<StatusBar fx:id="statusBar" maxHeight="20.0" prefHeight="20.0" prefWidth="1000.0" StackPane.alignment="BOTTOM_CENTER" />
+   </children>
+</StackPane>
