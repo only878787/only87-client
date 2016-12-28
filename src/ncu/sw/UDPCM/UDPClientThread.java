@@ -1,6 +1,7 @@
 package ncu.sw.UDPCM;
 
 
+import com.sun.corba.se.impl.io.OptionalDataException;
 import ncu.sw.gameClient.GameModel;
 import ncu.sw.gameUtility.Cmd;
 
@@ -24,6 +25,8 @@ public class UDPClientThread extends Thread {
     public UDPClientThread () {
         try {
             address = InetAddress.getByName("140.115.59.83");
+            //address = InetAddress.getByName("10.10.10.153");//NWLAB內網
+            //address = InetAddress.getByName("10.10.10.35");//NWLAB自己
             socket = new DatagramSocket();
             packet = new DatagramPacket(tests, tests.length,address,5000);
             socket.send(packet);
@@ -54,11 +57,12 @@ public class UDPClientThread extends Thread {
                 //System.out.println(" object received = "+cmd);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-                check = false;
             }
         } catch (IOException e) {
             e.printStackTrace();
-            check = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public synchronized void run() {
