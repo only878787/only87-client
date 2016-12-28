@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import ncu.sw.TCPCM.TCPClient;
+import ncu.sw.UDPCM.UDPUpdateServer;
 import ncu.sw.gameClient.GameModel;
 import ncu.sw.gameClient.UpdateThread;
 import ncu.sw.renderEngine.RenderThread;
@@ -82,10 +83,11 @@ public class LoginFrameController{
     private void login()throws Exception {
         if (TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
             String playerID = textField.getText();
+            UDPUpdateServer.getInstance().setPlayerID(playerID);
+
             TCPClient.getInstance().sendClientIdentity(playerID);
             GameModel.getInstance().setMyID(playerID);
             Stage currentStage = (Stage) loginPane.getScene().getWindow();
-
             GameFrameController.getInstance().setProperty(currentStage);
             //new RenderThread();
             //new UpdateThread();

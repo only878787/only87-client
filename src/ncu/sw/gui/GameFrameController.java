@@ -92,7 +92,7 @@ public class GameFrameController {
         StaticObject.getInstance().setImage();
         StaticObject.getInstance().setMap();
 
-        UDPUpdateServer.getInstance();
+        UDPUpdateServer.getInstance().initUDPServer();
         new RenderThread();
         //new UpdateThread();
     }
