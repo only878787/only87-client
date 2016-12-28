@@ -98,7 +98,7 @@ public class DynamicObject {
                 dir=Command.TURNWESTSOUTH;
                 break;
         }
-        if (attact && (dir!=87)) {
+        if (attact && dir!=87) {
             TCPClient.getInstance().sendMsg("ATK " + dir );
             System.out.println("ATK");
         }

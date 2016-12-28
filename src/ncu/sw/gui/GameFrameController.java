@@ -4,40 +4,44 @@ package ncu.sw.gui;
  * Created by onlyfly34 on 2016/11/12.
  */
 
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import ncu.sw.renderGameUtility.ImageUtility;
 import org.controlsfx.control.StatusBar;
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import ncu.sw.UDPCM.UDPUpdateServer;
 import ncu.sw.gameClient.DynamicObject;
 import ncu.sw.gameClient.StaticObject;
-import ncu.sw.gameClient.UpdateThread;
 import ncu.sw.renderEngine.RenderThread;
-import ncu.sw.renderEngine.SpriteRenderEngine;
 
 import java.io.IOException;
 import java.util.BitSet;
-import java.util.Random;
 
 public class GameFrameController {
     @FXML private Canvas canvas;
     @FXML private Label position;
     @FXML private StatusBar statusBar;
-    @FXML private BorderPane borderPane;
+    @FXML private VBox leaderBoard;
+    @FXML private StackPane pane;
+    @FXML public Label firstLabel;
+    @FXML public Label secondLabel;
+    @FXML public Label thirdLabel;
+    @FXML private ImageView fImageView;
+    @FXML private ImageView sImageView;
+    @FXML private ImageView tImageView;
     private static GameFrameController instance = null;
     public GraphicsContext gc;
     private Scene scene;
@@ -45,7 +49,7 @@ public class GameFrameController {
 
     private GameFrameController(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource( "GameFrameView.fxml" ));
-        loader.setRoot(this.borderPane);
+        loader.setRoot(this.pane);
         loader.setController(this);
         //Parent root = ( Parent ) loader.load();
         try {
@@ -66,18 +70,19 @@ public class GameFrameController {
         return instance;
     }
 
-    public void setProperty( Stage stageBuffer, Parent root) {
+    public void setProperty( Stage stageBuffer) {
         stageBuffer.setTitle("Only87-Gaming");
         stageBuffer.setResizable(false);
-        scene = new Scene(this.borderPane);
+        scene = new Scene(this.pane);
         stageBuffer.setScene(scene);
         stageBuffer.show();
 
         /**Set Graphics Context 2D ready**/
         gc = canvas.getGraphicsContext2D();
 
-        statusBar.setText("123");
-
+        fImageView.setImage(ImageUtility.goldImage);
+        sImageView.setImage(ImageUtility.silverImage);
+        tImageView.setImage(ImageUtility.brownImage);
         /**Add keylistener to the scene**/
         scene.addEventFilter(KeyEvent.KEY_PRESSED, keyPressedEventHandler);
         scene.addEventFilter(KeyEvent.KEY_RELEASED, keyReleasedEventHandler);
@@ -92,8 +97,8 @@ public class GameFrameController {
         //new UpdateThread();
     }
 
-    public BorderPane getBorderPane(){
-        return borderPane;
+    public StackPane getPane(){
+        return pane;
     }
 
     private void addKeyListener(Scene sceneBuffer) {
@@ -137,7 +142,7 @@ public class GameFrameController {
         return canvas;
     }
     public Label getPositionLabel() { return position; }
-    public StatusBar getStatusBar() {
+    /*public StatusBar getStatusBar() {
         return statusBar;
-    }
+    }*/
 }

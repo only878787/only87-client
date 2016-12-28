@@ -1,8 +1,9 @@
 package ncu.sw.renderEngine;
 
 import javafx.scene.canvas.GraphicsContext;
-import ncu.sw.gameUtility.GameObject;
+import ncu.sw.gui.GameFrameController;
 import ncu.sw.renderGameUtility.GameObjectR;
+import ncu.sw.renderGameUtility.PlayerR;
 import ncu.sw.renderGameUtility.Point;
 import ncu.sw.gameClient.GameModel;
 
@@ -33,5 +34,19 @@ public class SpriteRenderEngine {
                 }
             }
         }
+        ArrayList<PlayerR> plList = GameModel.getInstance().getPlayerRList();
+        if(plList.size()>=1)
+            GameFrameController.getInstance().firstLabel.setText(
+                    plList.get(0).getIdentity()+"  "
+                            +plList.get(0).getCount87()+" "+
+            plList.get(0).getScore());
+        if(plList.size()>=2)
+            GameFrameController.getInstance().secondLabel.setText(
+                    plList.get(1).getIdentity()+"  "+plList.get(1).getCount87()+" "+
+                            plList.get(1).getScore());
+        if(plList.size()>=3)
+            GameFrameController.getInstance().thirdLabel.setText(
+                    plList.get(2).getIdentity()+"  "+plList.get(2).getCount87()+" "+
+                            plList.get(2).getScore());
     }
 }

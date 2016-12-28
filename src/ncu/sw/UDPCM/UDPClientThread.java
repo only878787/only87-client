@@ -1,6 +1,7 @@
 package ncu.sw.UDPCM;
 
 
+import com.sun.corba.se.impl.io.OptionalDataException;
 import ncu.sw.gameClient.GameModel;
 import ncu.sw.gameUtility.Cmd;
 
@@ -56,11 +57,12 @@ public class UDPClientThread extends Thread {
                 //System.out.println(" object received = "+cmd);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
-                //check = false;
             }
         } catch (IOException e) {
             e.printStackTrace();
-            //check = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public synchronized void run() {
