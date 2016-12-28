@@ -60,9 +60,6 @@ public class UDPClientThread extends Thread {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
     public synchronized void run() {
