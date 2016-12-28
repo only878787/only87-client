@@ -70,7 +70,9 @@ public class GameModel {
     }
     public void setMyID(String id){
         identity = id;
-        System.out.println(id);
+    }
+    public String getMyID(){
+        return identity;
     }
     public Point getPlayerXY() {
         if(mplayer!= null)

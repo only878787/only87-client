@@ -20,6 +20,16 @@ public class Player extends GameObject{
     private int moveDir = 1;
     private Timer itemTimer;
 
+    public int getUdpPort() {
+        return udpPort;
+    }
+
+    public void setUdpPort(int udpPort) {
+        this.udpPort = udpPort;
+    }
+
+    private int udpPort = 0;
+
     public void setCount87(int count87) {
         this.count87 = count87;
     }

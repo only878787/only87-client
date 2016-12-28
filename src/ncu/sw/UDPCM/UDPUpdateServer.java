@@ -10,13 +10,17 @@ public class UDPUpdateServer {
     private static UDPUpdateServer ourInstance = null;
     private UDPClientThread udpClientThread;
     private Timer timer;
+    private String playerID;
 
-    private UDPUpdateServer() {
-        initUDPServer();
+    public void setPlayerID(String playerID) {
+        this.playerID = playerID;
     }
 
-    private void initUDPServer() {
-        udpClientThread = new UDPClientThread();
+    private UDPUpdateServer() {
+       // initUDPServer();
+    }
+    public void initUDPServer() {
+        udpClientThread = new UDPClientThread(this.playerID);
         timer = new Timer();
         udpClientThread.start();
        // timer.schedule(udpClientThread, Calendar.getInstance().getTime(),5000);
@@ -34,5 +38,4 @@ public class UDPUpdateServer {
     public Cmd getCmd () {
         return  this.udpClientThread.getCmd();
     }
-
 }
