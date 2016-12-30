@@ -81,7 +81,7 @@ public class LoginFrameController{
     }
 
     private void login()throws Exception {
-        if (TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
+        /*if (TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
             String playerID = textField.getText();
             UDPUpdateServer.getInstance().setPlayerID(playerID);
 
@@ -91,7 +91,22 @@ public class LoginFrameController{
             GameFrameController.getInstance().setProperty(currentStage);
             //new RenderThread();
             //new UpdateThread();
-        }else{
+        }*/
+        if (TCPClient.getInstance().connectServer(InetAddress.getByName(addr))) {
+            String playerID = textField.getText();
+            UDPUpdateServer.getInstance().setPlayerID(playerID);
+
+            if( TCPClient.getInstance().sendClientIdentityWait( playerID ) ){
+                GameModel.getInstance().setMyID(playerID);
+                Stage currentStage = (Stage) loginPane.getScene().getWindow();
+                GameFrameController.getInstance().setProperty(currentStage);
+            }else {
+                System.out.println("Duplicate ID");
+                message.setText("Duplicate ID");
+                message.setVisible(true);
+            }
+        }
+        else{
             System.out.println("Connecting error");
             message.setText("Connecting error");
             message.setVisible(true);
